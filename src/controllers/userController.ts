@@ -36,10 +36,9 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 // creating user
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        if (!req.body) return handleResponse(res, 400, 'Body Must be Valid')
+        if (!req.body) return handleResponse(res, 400, 'Body Must Needed')
         const { name, email } = req.body as { name: string; email: string };
         const newUser = await createUserService(name, email);
-        if (!newUser) return handleResponse(res, 400, 'User Input is Not Valid');
         handleResponse(res, 200, 'User Created Successfully', newUser)
     } catch (err) {
         next(err);
